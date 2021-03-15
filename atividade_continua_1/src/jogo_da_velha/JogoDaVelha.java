@@ -1,4 +1,7 @@
 package jogo_da_velha;
+
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class JogoDaVelha {
@@ -9,14 +12,21 @@ public class JogoDaVelha {
     }
 
 
-        /**
-         * Representação do tabuleiro como uma matriz de caracteres 3x3.
-         *
-         * @return Matriz de caracteres 3x3 com algum valor que indique que a posição não foi ocupada
-         */
+    /**
+     * Representação do tabuleiro como uma matriz de caracteres 3x3.
+     *
+     * @return Matriz de caracteres 3x3 com algum valor que indique que a posição não foi ocupada
+     */
     public static char[][] initialize() {
 
         return new char[][]{{'-', '-', '-'}, {'-', '-', '-'}, {'-', '-', '-'}};
+    }
+
+    public static void print_tabuleiro(char[][] tabuleiro) {
+
+        System.out.println(Arrays.deepToString(tabuleiro).replace(
+                "], ", "\n").replace("[", "").replace(
+                "]]", "").replace(",", ""));
     }
 
     /**
@@ -76,7 +86,7 @@ public class JogoDaVelha {
      */
     public static void game() {
 
-        Scanner entrada = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
 
         String[] codigos_status = {
                 "jogo pode continuar",
@@ -86,12 +96,14 @@ public class JogoDaVelha {
 
         char[][] main_matrix = initialize();
 
+        print_tabuleiro(main_matrix);
+
         int status = status(main_matrix);
 
-        System.out.println(main_matrix);
 
         while (status == 1) {
-            // TODO: Implementar logica
+//            # TODO: implementar logica
+
         }
 
         System.out.println(codigos_status[status]);
