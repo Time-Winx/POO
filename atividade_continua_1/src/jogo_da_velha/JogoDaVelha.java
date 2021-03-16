@@ -1,12 +1,90 @@
 package jogo_da_velha;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class JogoDaVelha {
 
+    private static int qtde_jogadores = 2;
+
+    private static Scanner scanner = new Scanner(System.in);
+
+    private static class Jogador {
+
+        public String name;
+        public int id;
+        public char identifier;
+
+        protected Jogador next;
+
+        public Jogador(String user_name, int user_id, char user_identifier) {
+
+            this.name = user_name;
+            this.id = user_id;
+            this.identifier = user_identifier;
+
+        }
+
+        public Jogador getNext() {
+            return next;
+        }
+
+        public void setNext(Jogador player) {
+            next = player;
+        }
+    }
+
+    private static class listaJogadores {
+
+        public Jogador cursor;
+        protected int size;
+
+        public void ListaJogadores() {
+            cursor = null;
+            size = 0;
+        }
+
+        public int size() {
+            return size;
+        }
+
+        public Jogador getJogador() {
+            return cursor;
+        }
+
+        public Jogador proximojogador() {
+            return cursor.getNext();
+        }
+
+        public void to_proximo() {
+            cursor = cursor.getNext();
+        }
+
+        public void add(Jogador jogador) {
+            if (cursor == null) {
+                jogador.setNext(jogador);
+                cursor = jogador;
+            } else {
+                jogador.setNext(cursor.getNext());
+                cursor.setNext(jogador);
+            }
+            size++;
+        }
+
+
+    }
+
+    private static char[] lista_simbolos = {'X', 'O'};
+
+    private static String[] codigos_status = {
+            "Ocorreu um empate",
+            "jogo pode continuar",
+            "Jogador 0 venceu",
+            "Jogador X venceu"};
+
     public static void main(String[] args) {
+
+
         game();
 
     }
@@ -22,12 +100,6 @@ public class JogoDaVelha {
         return new char[][]{{'-', '-', '-'}, {'-', '-', '-'}, {'-', '-', '-'}};
     }
 
-    public static void print_tabuleiro(char[][] tabuleiro) {
-
-        System.out.println(Arrays.deepToString(tabuleiro).replace(
-                "], ", "\n").replace("[", "").replace(
-                "]]", "").replace(",", ""));
-    }
 
     /**
      * @param M     Matriz do jogo da velha
@@ -40,10 +112,15 @@ public class JogoDaVelha {
      */
     public static boolean step(char[][] M, int lin, int col, char gamer) {
 
-        if (M[lin][col] == '-') {
-            M[lin][col] = gamer;
-            return true;
+        if (lin < M.length && col < M[0].length) {
+            if (M[lin][col] == '-') {
+                M[lin][col] = gamer;
+                return true;
+            }
+            System.out.println("Posição ocupada. Tente novamente");
+            return false;
         }
+        System.out.println("Posição inválida. Escolha novamente");
         return false;
     }
 
@@ -74,7 +151,7 @@ public class JogoDaVelha {
 
         // TODO: check for seconday matrix
 
-        return 0;
+        return 1;
     }
 
     /**
@@ -86,15 +163,29 @@ public class JogoDaVelha {
      */
     public static void game() {
 
-        Scanner scanner = new Scanner(System.in);
-
-        String[] codigos_status = {
-                "jogo pode continuar",
-                "Ocorreu um empate",
-                "Jogador 0 venceu",
-                "Jogador X venceu"};
-
         char[][] main_matrix = initialize();
+
+        listaJogadores lista_jogadores = new listaJogadores();
+
+        System.out.println("Bem vindo ao jogo da velha!\n" +
+                "para iniciar, vamos definir os nomes dos jogadores\n");
+
+        for (int i = 1; i <= qtde_jogadores; i++) {
+
+            System.out.printf("\nInsira o nome do jogador %n\n", i);
+
+            String nome_jogador = scanner.nextLine();
+
+            Jogador jogador = new Jogador(nome_jogador, i, lista_simbolos[i - 1]);
+
+            System.out.printf("\nOlá %s !!!\n" +
+                            "Você ficará com o simbolo %C\n",
+                    nome_jogador, lista_simbolos[i - 1]);
+
+            lista_jogadores.add(jogador);
+        }
+
+        System.out.println("\n\n----INiCIANDO O JOGO----\n\n");
 
         print_tabuleiro(main_matrix);
 
@@ -102,7 +193,32 @@ public class JogoDaVelha {
 
 
         while (status == 1) {
-//            # TODO: implementar logica
+
+            boolean valores_validos = false;
+
+            while (valores_validos == false) {
+
+                System.out.printf("%s('%c'), escolha a coluna: ",
+                        lista_jogadores.cursor.name,
+                        lista_jogadores.cursor.identifier);
+                int valor_input_coluna = scanner.nextInt();
+                System.out.printf("%s('%c'), escolha a linha: ",
+                        lista_jogadores.cursor.name,
+                        lista_jogadores.cursor.identifier);
+                int valor_input_linha = scanner.nextInt();
+
+
+                valores_validos = step(main_matrix, valor_input_linha,
+                        valor_input_coluna,
+                        lista_jogadores.cursor.identifier);
+
+
+            }
+
+            status = status(main_matrix);
+            System.out.println(codigos_status[status]);
+            lista_jogadores.to_proximo();
+            print_tabuleiro(main_matrix);
 
         }
 
@@ -110,4 +226,13 @@ public class JogoDaVelha {
 
     }
 
+    public static void print_tabuleiro(char[][] tabuleiro) {
+
+        System.out.println(Arrays.deepToString(tabuleiro).replace(
+                "], ", "\n").replace("[", "").replace(
+                "]]", "").replace(",", ""));
+        System.out.println("\n");
+
+    }
 }
+
