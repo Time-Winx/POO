@@ -1,3 +1,11 @@
+/**
+ * Arthur Alves Correa - 1903365
+ * Eduardo Akira Hanada Oushiro - 1903669
+ * Gabriel Tomaz do Nascimento - 1903811
+ * Matheus Pollini Malaquias - 1903942
+ * Victor Bastos De Carvalho - 1903491
+ * William Alves Ribeiro - 1903690
+ */
 package jogo_da_velha;
 
 import java.util.Arrays;
