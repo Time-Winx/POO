@@ -5,10 +5,13 @@ import java.util.Scanner;
 
 public class JogoDaVelha {
 
-    private static int qtde_jogadores = 2;
+    private static final int qtde_jogadores = 2;
 
-    private static Scanner scanner = new Scanner(System.in);
+    private static final Scanner scanner = new Scanner(System.in);
 
+    /**
+     * Definição de um jogador utilizndo como base a Estrtura de nodo
+     */
     private static class Jogador {
 
         public String name;
@@ -25,36 +28,31 @@ public class JogoDaVelha {
 
         }
 
+        /**
+         * @return retorna proximo jogador
+         */
         public Jogador getNext() {
             return next;
         }
 
+        /**
+         * configura jogador
+         *
+         * @param player jogdaor
+         */
         public void setNext(Jogador player) {
             next = player;
         }
     }
 
+    /**
+     * Classe responsavel por implementar uma lista circular encadeada
+     * para fazer a transição entre os jogadores
+     */
     private static class listaJogadores {
 
         public Jogador cursor;
         protected int size;
-
-        public void ListaJogadores() {
-            cursor = null;
-            size = 0;
-        }
-
-        public int size() {
-            return size;
-        }
-
-        public Jogador getJogador() {
-            return cursor;
-        }
-
-        public Jogador proximojogador() {
-            return cursor.getNext();
-        }
 
         public void to_proximo() {
             cursor = cursor.getNext();
@@ -74,16 +72,14 @@ public class JogoDaVelha {
 
     }
 
-    private static char[] lista_simbolos = {'X', 'O'};
+    private static final char[] lista_simbolos = {'X', 'O'};
 
-    private static String[] codigos_status = {
+    private static final String[] codigos_status = {
             "Ocorreu um empate",
-            "jogo pode continuar",
             "Jogador 0 venceu",
             "Jogador X venceu"};
 
     public static void main(String[] args) {
-
 
         game();
 
@@ -127,31 +123,114 @@ public class JogoDaVelha {
 
     /**
      * @param M Matriz do jogo da valha
-     * @return (1 - jogo pode continuar, 0 - ocorreu um empate, 3 - jogador O venceu, 2 - jogador X venceu
+     * @return (- 1 - jogo pode continuar, 0 - ocorreu um empate, 1 - jogador O venceu, 2 - jogador X venceu
      *)
      */
     public static int status(char M[][]) {
 
+        // conferencia linhas
+        for (char[] linha_atual : M) {
 
-        for (int index_lin = 0; index_lin < M.length; index_lin++) {
+            char caracter_predominante = checkIfAllisEqual(linha_atual);
 
-            char[] linha = M[index_lin];
-
-            for (int index_item_line = 0; index_item_line < linha.length; index_item_line++) {
-
-                // TODO: Implementar check if all variables matches with case
-
+            if (caracter_predominante == 'O') {
+                return 1;
+            } else if (caracter_predominante == 'X') {
+                return 2;
             }
         }
 
+        // Conferencia colunas
 
-        // TODO: check for all columns
+        char valor_culunas = getCharColumn(M);
 
-        // TODO: check for indentity matrix
+        if (valor_culunas == 'X') {
+            return 2;
+        } else if (valor_culunas == 'O') {
+            return 1;
+        }
 
-        // TODO: check for seconday matrix
+        // Conferencia diagonal
+//        TODO: fazer conferencia diagonal
 
-        return 1;
+
+        char[] matriz_identidade = new char[M[0].length];
+        for (int i = 0; i < M.length; i++) {
+            matriz_identidade[i] = M[i][i];
+        }
+
+        char valor_predominante_matriz_identidade = checkIfAllisEqual(matriz_identidade);
+
+        if (valor_predominante_matriz_identidade == 'O') {
+            return 1;
+        } else if (valor_predominante_matriz_identidade == 'X') {
+            return 2;
+        }
+
+        char[] matriz_inversa = new char[M.length];
+        for (int j = M.length - 1, i = 0; j >= 0 && i < M.length; j--, i++) {
+            matriz_inversa[i] = M[i][j];
+        }
+
+
+        char valor_predominante_matriz_inversa = checkIfAllisEqual(matriz_inversa);
+
+        if (valor_predominante_matriz_inversa == 'O') {
+            return 1;
+        } else if (valor_predominante_matriz_inversa == 'X') {
+            return 2;
+        }
+
+        // fazer conferencia empate
+
+        boolean contem_barra = false;
+        for (char[] linha_atual : M) {
+            for (char el : linha_atual) {
+                if (el == '-') {
+                    contem_barra = true;
+                    break;
+                }
+            }
+        }
+
+        if (!contem_barra) return 0;
+
+        return -1;
+    }
+
+    public static char getCharColumn(char nums[][]) {
+
+        char[] vetorLinha = new char[nums.length];
+
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = 0; j < nums.length; j++) {
+                vetorLinha[j] = nums[j][i];
+            }
+
+            char caracter_predominante = checkIfAllisEqual(vetorLinha);
+
+            if (caracter_predominante != '-') return caracter_predominante;
+        }
+
+        return '-';
+    }
+
+    public static char checkIfAllisEqual(char array[]) {
+
+        boolean todos_os_valores_iguais = true;
+
+        for (int i = 1; i < array.length; i++) {
+            if (array[i] != array[i - 1] || array[i - 1] == '-') {
+                todos_os_valores_iguais = false;
+                break;
+            }
+        }
+
+        if (todos_os_valores_iguais) {
+            return array[0];
+        } else {
+            return '-';
+        }
     }
 
     /**
@@ -167,19 +246,24 @@ public class JogoDaVelha {
 
         listaJogadores lista_jogadores = new listaJogadores();
 
-        System.out.println("Bem vindo ao jogo da velha!\n" +
-                "para iniciar, vamos definir os nomes dos jogadores\n");
+        System.out.println("""
+                Bem vindo ao jogo da velha!
+                para iniciar, vamos definir os nomes dos jogadores
+                """);
 
         for (int i = 1; i <= qtde_jogadores; i++) {
 
-            System.out.printf("\nInsira o nome do jogador %n\n", i);
+            System.out.printf("\nInsira o nome do jogador %d%n\n", i);
 
             String nome_jogador = scanner.nextLine();
 
             Jogador jogador = new Jogador(nome_jogador, i, lista_simbolos[i - 1]);
 
-            System.out.printf("\nOlá %s !!!\n" +
-                            "Você ficará com o simbolo %C\n",
+            System.out.printf("""
+
+                            Olá %s !!!
+                            Você ficará com o simbolo %C
+                            """,
                     nome_jogador, lista_simbolos[i - 1]);
 
             lista_jogadores.add(jogador);
@@ -191,12 +275,11 @@ public class JogoDaVelha {
 
         int status = status(main_matrix);
 
-
-        while (status == 1) {
+        while (status == -1) {
 
             boolean valores_validos = false;
 
-            while (valores_validos == false) {
+            while (!valores_validos) {
 
                 System.out.printf("%s('%c'), escolha a coluna: ",
                         lista_jogadores.cursor.name,
@@ -211,12 +294,14 @@ public class JogoDaVelha {
                 valores_validos = step(main_matrix, valor_input_linha,
                         valor_input_coluna,
                         lista_jogadores.cursor.identifier);
-
-
             }
 
             status = status(main_matrix);
-            System.out.println(codigos_status[status]);
+            if (status == -1) {
+                System.out.println("Jogo pode continuar");
+            } else {
+                System.out.println(codigos_status[status]);
+            }
             lista_jogadores.to_proximo();
             print_tabuleiro(main_matrix);
 
