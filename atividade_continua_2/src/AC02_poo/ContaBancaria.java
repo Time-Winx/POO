@@ -1,11 +1,12 @@
 package AC02_poo;
 
 public class ContaBancaria {
-    private static int ultimoNumeroConta = 1000; // Último número de conta utilizado
-
+    private static int ultimoNumeroConta = 1000; // ï¿½ltimo nï¿½mero de conta utilizado
     private String correntista;
-    private int numeroConta; // número da conta
+    private int numeroConta; // nï¿½mero da conta
     private double saldo; // saldo da conta
+    private static double cpmfTaxa = 0.0025; // Atributo da classe e nÃ£o do objeto
+    private double cpmf; // Acumulo pago
 
 
     public ContaBancaria(String correntista, double saldo) {
@@ -13,6 +14,7 @@ public class ContaBancaria {
         this.numeroConta = ultimoNumeroConta;
         this.saldo = saldo;
         this.correntista = correntista;
+        this.setCpmf(0);
     }
 
     public void depositar(double valor) {
@@ -21,6 +23,7 @@ public class ContaBancaria {
 
     public void sacar(double valor) {
         this.saldo = this.saldo - valor;
+        cpmf();
     }
 
     public void transferir(double valor, ContaBancaria contaDestino) {
@@ -36,7 +39,21 @@ public class ContaBancaria {
         return this.numeroConta;
     }
 
+    public void cpmf() {
+        double taxa = this.saldo * cpmfTaxa;
+        this.saldo -= taxa;
+        this.setCpmf(this.getCpmf() + taxa);
+    }
+    
     public String toString() {
         return "Conta de " + this.correntista + " - Saldo de R$ " + this.saldo;
     }
+
+	public double getCpmf() {
+		return cpmf;
+	}
+
+	private void setCpmf(double cpmf) {
+		this.cpmf = cpmf;
+	}
 }

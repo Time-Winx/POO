@@ -19,12 +19,12 @@ public class Banco {
 		int indiceConta = -1;
 		while (!clienteValido) {
 			mostrarInfo(contas);
-			System.out.print("O saque será efetuado na conta de qual cliente? (0 a " + (contas.length - 1) + "): ");
+			System.out.print("O saque serÃ¡ efetuado na conta de qual cliente? (0 a " + (contas.length - 1) + "): ");
 			indiceConta = entrada.nextInt();
 			if (indiceConta >= 0 && indiceConta < contas.length) {
 				clienteValido = true;
 			} else {
-				System.out.println("Índice de cliente inválido!");
+				System.out.println("Indice de cliente invï¿½lido!");
 			}
 		}
 
@@ -39,19 +39,19 @@ public class Banco {
 		int indiceConta = -1;
 		while (!clienteValido) {
 			mostrarInfo(contas);
-			System.out.print("O depósito será efetuado na conta de qual cliente? (0 a " + (contas.length - 1) + "): ");
+			System.out.print("O deposito serÃ¡ efetuado na conta de qual cliente? (0 a " + (contas.length - 1) + "): ");
 			indiceConta = entrada.nextInt();
 			if (indiceConta >= 0 && indiceConta < contas.length) {
 				clienteValido = true;
 			} else {
-				System.out.println("Índice de cliente inválido!");
+				System.out.println("Indice de cliente invalido!");
 			}
 		}
 		
-		System.out.println("Qual o valor do depósito?");
+		System.out.println("Qual o valor do deposito?");
 		double deposito = entrada.nextDouble();
 		contas[indiceConta].depositar(deposito);
-		System.out.println("Depósito finalizado.\n");
+		System.out.println("Deposito finalizado.\n");
 		
 	}
 	public static void interacaoTransferir(ContaBancaria[] contas) {
@@ -60,24 +60,24 @@ public class Banco {
 		int indiceConta2 = -1;
 		while (!clienteValido) {
 			mostrarInfo(contas);
-			System.out.print("A transferência será feita de qual conta? (0 a " + (contas.length - 1) + "): ");
+			System.out.print("A transferancia serÃ¡ feita de qual conta? (0 a " + (contas.length - 1) + "): ");
 			indiceConta = entrada.nextInt();
 			if (indiceConta >= 0 && indiceConta < contas.length) {
 				clienteValido = true;
 			} else {
-				System.out.println("Índice de cliente inválido!");
+				System.out.println("Indice de cliente invalido!");
 			}
 			
-			System.out.print("Para qual conta irá transferir? (0 a " + (contas.length - 1) + "): ");
+			System.out.print("Para qual conta ira transferir? (0 a " + (contas.length - 1) + "): ");
 			indiceConta2 = entrada.nextInt();
 			if (indiceConta2 >= 0 && indiceConta2 < contas.length) {
 				clienteValido = true;
 			} else {
-				System.out.println("Índice de cliente inválido!");
+				System.out.println("Indice de cliente invalido!");
 			}
 		}
 		
-		System.out.print("Qual o valor da transferência?");
+		System.out.print("Qual o valor da transferencia?");
 		double valor = entrada.nextDouble();
 		ContaBancaria contaDestino = contas[indiceConta2];
 		contas[indiceConta].transferir(valor, contaDestino);
@@ -87,22 +87,22 @@ public class Banco {
 	public static void main(String[] args) {
 		ContaBancaria[] contas = new ContaBancaria[5];
 		contas[0] = new ContaBancaria("Marcos", 1000.00);
-		contas[1] = new ContaBancaria("Júlia", 250.00);
-		contas[2] = new ContaBancaria("João", 2500.00);
+		contas[1] = new ContaBancaria("Julia", 250.00);
+		contas[2] = new ContaBancaria("JoÃ£o", 2500.00);
 		contas[3] = new ContaBancaria("Roberto", 3000.00);
-		contas[4] = new ContaBancaria("Janaína", 4500.00);
+		contas[4] = new ContaBancaria("Janaina", 4500.00);
 
 		entrada = new Scanner(System.in);
 		boolean sair = false;
 
 		while (!sair) {
-			System.out.println("Escolha uma operação:");
-			System.out.println("(1) mostrar informações de todas as contas");
+			System.out.println("Escolha uma operaÃ§Ã£o:");
+			System.out.println("(1) mostrar informaÃ§Ãµes de todas as contas");
 			System.out.println("(2) sacar");
 			System.out.println("(3) depositar");
 			System.out.println("(4) transferir");
 			System.out.println("(5) sair");
-			System.out.print("Opção escolhida: ");
+			System.out.print("OpÃ§Ã£o escolhida: ");
 			int escolha = entrada.nextInt();
 			System.out.println();
 
@@ -123,7 +123,7 @@ public class Banco {
 				sair = true;
 				break;
 			default:
-				System.out.println("Opção inválida!");
+				System.out.println("OpÃ§Ã£o invalida!");
 			}
 			System.out.println();
 		}
