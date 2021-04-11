@@ -81,9 +81,9 @@ public class Banco {
 		double valor = entrada.nextDouble();
 		ContaBancaria contaDestino = contas[indiceConta2];
 		contas[indiceConta].transferir(valor, contaDestino);
-		System.out.println("Deposito finalizado.\n");
+		System.out.println("Transferência finalizada.\n");
 	}
-
+	
 	public static void main(String[] args) {
 		ContaBancaria[] contas = new ContaBancaria[5];
 		contas[0] = new ContaBancaria("Marcos", 1000.00);
