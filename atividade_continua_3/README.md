@@ -15,51 +15,59 @@ Em quase todas as histórias, o super-herói é chamado para resolver um problem
 
 Na lista abaixo são citados alguns super-heróis e alguns vilões, dos quais provavelmente já ouvimos falar. A lista apresenta também o nome na vida real e os superpoderes de cada um. Os superpoderes foram categorizados de 1 a 5, sendo 5 o poder mais forte e 1 o poder mais fraco.
 
-Super-Heróis
---------
+Tabela dos Super-Heróis:
 Nome|Nome na vida real|Superpoderes|Categoria do Poder
--|-|-|-|-
-Homem-Aranha|Peter Park|soltar teia|andar em paredes sentido apurado|3 2 1
--|-|-|-|-
+----|-----------------|------------|------------------
+Homem-Aranha|Peter Park|soltar teia<br />andar em paredes<br />sentido apurado|3<br />2<br />1
+Super-Homem|Crark Kent|voar<br />força<br />visão de raio x<br />sopro congelante<br />|3<br />5<br />4<br />4<br />
+Capitão América|Steven Rogers|supersoldado<br />escudo<br />|3<br />3<br />
+Flash|Barry Allen|velocidade|5
+Homem de Ferro|Tony Stark|armadura<br />dispositivos eletrônicos|4<br />2
+Mulher-Maravilha|Diana|velocidade|forca<br />braceletes|3<br />3<br />1
 
 
-
-
+Tabela dos Vilões:
+Nome|Nome na vida real|Superpoderes|Categoria do Poder
+----|-----------------|------------|------------------
+Duende-Verde|Norman Osbourne|força|5
+Lex Luthor|Lex Luthor|mente aguçada|5
+Bizarro|Bizarro|voar<br />força<br />visão de raio x<br />sopro congelante|3<br />5<br />4<br />4
+Octopus|Otto Octavius|tentáculos indestrutíveis<br />velocidade|5<br />1
 
  #### ATIVIDADE:
-1. Construa uma classe SuperPoder, com a seguinte estrutura:
-  Atributos privados:
-    nome: String
-    categoria: int
-  Métodos públicos:
-    getNome(): retorna o nome do poder
-    getCategoria(): retorna a categoria do poder
-  Construtor:
-    SuperPoder(String nome, int categoria): Recebe o nome e a categoria do poder e atribui ao objeto
+1. Construa uma classe SuperPoder, com a seguinte estrutura:<br />
+  Atributos privados:<br />
+    -nome: String<br />
+    -categoria: int<br />
+  Métodos públicos:<br />
+    -getNome(): retorna o nome do poder<br />
+    -getCategoria(): retorna a categoria do poder<br />
+  Construtor:<br />
+    -SuperPoder(String nome, int categoria): Recebe o nome e a categoria do poder e atribui ao objeto<br />
 
-2. Construa uma classe Personagem, com a seguinte estrutura:
-  Atributos privados:
-    nome: String
-    nomeVidaReal: String
-    poderes: vetor de 4 elementos do tipo SuperPoder
-  Métodos públicos:
-    void adicionarSuperPoder(SuperPoder superpoder): recebe um superpoder como parâmetro e coloca-o no vetor ‘poderes’. Um super-herói ou vilão pode ter, no máximo, 4 poderes.
-    double getPoderTotal(): retorna a soma de poderes do super-herói. O poder total é calculado percorrendo-se o vetor ‘poderes’ e somando a categoria de cada poder.
-  Construtor:
-    Personagem (String nome, String nomeVidaReal): Recebe os nomes do personagem e atribui ao objeto.
-3. Construa uma classe SuperHeroi, que herda da classe Personagem, com a seguinte estrutura:
-  Construtor: 
-    SuperHeroi (String nome, String nomeVidaReal): Recebe os dois parâmetros e repassa para a superclasse.
-    Sobrescrita do método da superclasse:
-    double getPoderTotal(): Retorna o poder do personagem super-herói com um acréscimo de 10%.
-4. Construa uma classe chamada Vilao, que herda da classe Personagem, com a seguinte estrutura:
-  Atributos públicos:
-    tempoDePrisao: int
-  Construtor:
-    Vilao (String nome, String nomeVidaReal, int tempoDePrisao): Recebe os três parâmetros e repassa dois deles para a superclasse.
-5. Construa uma classe chamada Confronto, com a seguinte estrutura:
-  Métodos públicos:
-    int lutar (SuperHeroi superheroi, Vilao vilao): método recebe um super-herói e um vilão como parâmetros e decide quem é o vencedor da batalha. O método deve retornar: 
+2. Construa uma classe Personagem, com a seguinte estrutura:<br />
+  Atributos privados:<br />
+    -nome: String<br />
+    -nomeVidaReal: String<br />
+    -poderes: vetor de 4 elementos do tipo SuperPoder<br />
+  Métodos públicos:<br />
+    -void adicionarSuperPoder(SuperPoder superpoder): recebe um superpoder como parâmetro e coloca-o no vetor ‘poderes’. Um super-herói ou vilão pode ter, no máximo, 4 poderes.<br />
+    -double getPoderTotal(): retorna a soma de poderes do super-herói. O poder total é calculado percorrendo-se o vetor ‘poderes’ e somando a categoria de cada poder.<br />
+  Construtor:<br />
+    -Personagem (String nome, String nomeVidaReal): Recebe os nomes do personagem e atribui ao objeto.<br />
+3. Construa uma classe SuperHeroi, que herda da classe Personagem, com a seguinte estrutura:<br />
+  Construtor: <br />
+    -SuperHeroi (String nome, String nomeVidaReal): Recebe os dois parâmetros e repassa para a superclasse.<br />
+    Sobrescrita do método da superclasse:<br />
+    -double getPoderTotal(): Retorna o poder do personagem super-herói com um acréscimo de 10%.<br />
+4. Construa uma classe chamada Vilao, que herda da classe Personagem, com a seguinte estrutura:<br />
+  Atributos públicos:<br />
+    -tempoDePrisao: int<br />
+  Construtor:<br />
+    -Vilao (String nome, String nomeVidaReal, int tempoDePrisao): Recebe os três parâmetros e repassa dois deles para a superclasse.<br />
+5. Construa uma classe chamada Confronto, com a seguinte estrutura:<br />
+  Métodos públicos:<br />
+    -int lutar (SuperHeroi superheroi, Vilao vilao): método recebe um super-herói e um vilão como parâmetros e decide quem é o vencedor da       batalha. O método deve retornar: <br />
     1: se o super-herói ganha a batalha
     2: se o vilão ganha a batalha
     0: se houver empate.
