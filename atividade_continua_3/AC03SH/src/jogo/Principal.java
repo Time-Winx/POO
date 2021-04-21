@@ -2,6 +2,14 @@ package jogo;
 
 public class Principal {
     public static void main(String args[]){
+        /*
+            Arthur Alves Correa - 1903356
+            Gabriel Tomaz do Nascimento - 1903811 
+            Eduardo Akira Hanada Oushiro - 1903669
+            Matheus Pollini Malaquias - 1903942
+            Victor Bastos De Carvalho - 1903491
+            William Alves Ribeiro - 1903690
+        */
         // Crie um objeto da classe SuperHeroi e um objeto da classe Vilao.
         SuperHeroi heroi = new SuperHeroi("Homem-Aranha", "Peter Park");
         Vilao vilao = new Vilao("Duende-Verde", "Norman Osbourne", 1);
