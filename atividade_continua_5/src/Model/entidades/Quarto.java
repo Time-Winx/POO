@@ -1,6 +1,5 @@
-package entidades;
+package Model.entidades;
 
-import java.awt.*;
 import java.util.ArrayList;
 
 public class Quarto {
@@ -20,6 +19,14 @@ public class Quarto {
 
     public ArrayList getHospedes() {
         return hospedes;
+    }
+
+    public int getQtdeHospedes() {
+        return hospedes.size()
+    }
+
+    public int getMaximo_hospedes() {
+        return Maximo_hospedes;
     }
 
     public void addHospedes(Paciente paciente) {

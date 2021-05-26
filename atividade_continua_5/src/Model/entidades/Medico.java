@@ -1,6 +1,6 @@
-package entidades;
+package Model.entidades;
 
-import java.util.*;
+import java.util.LinkedList;
 
 public class Medico {
 
@@ -27,4 +27,5 @@ public class Medico {
     public void setFormacoes(LinkedList formacoes) {
         Formacoes = formacoes;
     }
+
 }

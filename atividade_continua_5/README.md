@@ -20,13 +20,13 @@
 
 ##### Atributos
 
-- CRM
-- CPF
-- Nome
-- Telefone
-- Salário
-- Formações
-- Formação em que atua
+- [x] CRM
+- [x] CPF
+- [x] Nome
+- [x] Telefone
+- [ ] Salário
+- [ ] Formações
+- [ ] Formação em que atua
 
 
 ##### Metodos
@@ -48,7 +48,7 @@
 - Telefone
 - Data de nascimento
 - Médico responsável `[CRM]`
-- entidades.Quarto individual
+- Model.entidades.Quarto individual
 
 ##### Metodos
 

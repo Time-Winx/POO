@@ -1,6 +1,6 @@
-package listas;
+package Model.listas;
 
-import entidades.Quarto;
+import Model.entidades.Quarto;
 
 import java.util.ArrayList;
 import java.util.Iterator;

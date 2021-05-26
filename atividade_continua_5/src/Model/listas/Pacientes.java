@@ -1,12 +1,17 @@
-package listas;
+package Model.listas;
 
-import entidades.Paciente;
+import Model.entidades.Paciente;
+import jdk.jshell.spi.ExecutionControl;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 public class Pacientes implements Iterable<Paciente> {
+    public void save() throws ExecutionControl.NotImplementedException {
+        throw new ExecutionControl.NotImplementedException("TODO");
+    }
+
     private final List<Paciente> listaPacientes = new ArrayList<Paciente>();
 
     public List<Paciente> getListaPacientes() {

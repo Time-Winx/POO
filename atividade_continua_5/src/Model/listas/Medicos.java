@@ -1,6 +1,6 @@
-package listas;
+package Model.listas;
 
-import entidades.Medico;
+import Model.entidades.Medico;
 
 import java.util.ArrayList;
 import java.util.Iterator;

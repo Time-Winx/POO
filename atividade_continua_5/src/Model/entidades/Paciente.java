@@ -1,4 +1,4 @@
-package entidades;
+package Model.entidades;
 import utilitarios.Endereco;
 import java.util.Date;
 

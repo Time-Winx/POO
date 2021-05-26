@@ -18,7 +18,7 @@ public class Endereco {
         this.CEP = CEP;
         this.Rua = Rua;
         this.Numero = Numero;
-        this.Complemento = Complemento
+        this.Complemento = Complemento;
     }
 
 }

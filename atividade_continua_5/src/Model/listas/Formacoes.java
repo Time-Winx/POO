@@ -1,4 +1,4 @@
-package listas;
+package Model.listas;
 
 import java.util.ArrayList;
 import java.util.Iterator;

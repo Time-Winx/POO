@@ -1,6 +1,6 @@
-package listas;
+package Model.listas;
 
-import entidades.ItemHistorico;
+import Model.entidades.ItemHistorico;
 
 import java.util.ArrayList;
 import java.util.Iterator;
