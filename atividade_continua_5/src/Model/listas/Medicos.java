@@ -1,4 +1,4 @@
-package Listas;
+package listas;
 
 import entidades.Medico;
 
