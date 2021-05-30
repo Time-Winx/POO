@@ -2,44 +2,63 @@ package Controller.Ator;
 
 import Model.entidades.ItemHistorico;
 import Model.entidades.Paciente;
-import Model.listas.Historico;
+import Model.listas.Formacoes;
+import Model.listas.Medicos;
 import Model.listas.Pacientes;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Medico extends User {
 
     public String CRM;
-    public List lista_pacientes;
-
-    // TODO: Fazer overrite do metodo de cadastro de cliente
+    public List<Paciente> lista_pacientes;
 
     public Medico(String crm) {
         this.CRM = crm;
     }
 
-    public void relacionaPaciente(Paciente paciente) {
+    public void relacionaPaciente(Paciente paciente, List<Paciente> lista_pacientes) {
         paciente.setCRM_medico_responsavel(this.CRM);
-        Pacientes lista_pacientes = new Pacientes();
     }
 
     /**
      * Retorna lista referente ao seu paciente especifico
      */
-    public List getListaPacientes(Pacientes lista_pacientes) {
-        this.lista_pacientes = lista_pacientes.stream().filter(el -> el.CRM_medico_responsavel == this.CRM).collect(Collectors.toList());
+    public List<Paciente> getListaPacientes(List<Paciente> lista_pacientes) {
+        for(Paciente paciente: lista_pacientes) {
+            if (paciente.CRM_medico_responsavel == this.CRM) {
+                lista_pacientes.add(paciente);
+            }
+        };
+        this.lista_pacientes = lista_pacientes;
         return this.lista_pacientes;
     }
 
-    public void addItemHistorico() {
-        ItemHistorico itemHistorico = new ItemHistorico();
-        Historico historico = new Historico();
-        historico.addHistoricoLista(itemHistorico);
+    public void addItemHistorico(List<ItemHistorico> Historico, String observacoes, int avaliacao_paciente,
+                                 String id_quarto, String paciente_cpf, String medico_crm) {
+        ItemHistorico itemHistorico = new ItemHistorico(
+                observacoes, avaliacao_paciente, id_quarto, paciente_cpf, medico_crm
+        );
+        Historico.add(itemHistorico);
     }
 
-    public List historicoPaciente(String cpf_paciente) {
-        List lista_todos_pacientes = new Pacientes(); // TODO: Fazer novo contructor para recuperacao
-        return lista_todos_pacientes.stream().filter(el -> el.CPF).collect(Collectors.toList());
+    public List<Paciente> historicoPaciente(String cpf_paciente, List<Paciente> lista_paciente) {
+        for(Paciente paciente: lista_paciente) {
+            if (paciente.getCPF() == cpf_paciente)
+                lista_paciente.add(paciente);
+        }
+        return lista_paciente;
+    }
+
+    public void selecionaFormacao(String formacao, List<String> lista_formacoes, List<Model.entidades.Medico> lista_medicos) {
+        for (Model.entidades.Medico medico: lista_medicos) {
+            if (this.CRM.equals(medico.getCRM())) {
+                for (String tipo_formacao: lista_formacoes) {
+                    if(tipo_formacao.equals(formacao)) {
+                        medico.setFormacoes(formacao);
+                    }
+                }
+            }
+        }
     }
 }

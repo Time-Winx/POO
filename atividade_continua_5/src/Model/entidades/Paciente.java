@@ -39,4 +39,8 @@ public class Paciente {
     public String getID_quarto() {
         return ID_quarto;
     }
+
+    public String getCPF() {
+        return CPF;
+    }
 }

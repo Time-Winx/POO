@@ -12,7 +12,7 @@ public class Formacoes implements Iterable {
         return listas;
     }
 
-    public void addHistoricoLista(String formacao) {
+    public void addFormacaoLista(String formacao) {
         listas.add(formacao);
     }
 

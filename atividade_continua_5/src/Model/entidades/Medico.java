@@ -1,5 +1,7 @@
 package Model.entidades;
 
+import Model.listas.Formacoes;
+
 import java.util.LinkedList;
 
 public class Medico {
@@ -9,7 +11,7 @@ public class Medico {
     protected String Nome;
     protected String Telefone;
     public float Salario;
-    public LinkedList Formacoes;
+    public Model.listas.Formacoes formacoes;
     public String Formacao_atual;
 
     public Medico(String CRM, String CPF, String Nome, String Telefone) {
@@ -24,8 +26,11 @@ public class Medico {
         Salario = salario;
     }
 
-    public void setFormacoes(LinkedList formacoes) {
-        Formacoes = formacoes;
+    public void setFormacoes(String formacao) {
+        formacoes.addFormacaoLista(formacao);
     }
 
+    public String getCRM() {
+        return CRM;
+    }
 }

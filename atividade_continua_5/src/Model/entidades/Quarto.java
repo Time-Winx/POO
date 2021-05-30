@@ -22,7 +22,7 @@ public class Quarto {
     }
 
     public int getQtdeHospedes() {
-        return hospedes.size()
+        return hospedes.size();
     }
 
     public int getMaximo_hospedes() {

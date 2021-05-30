@@ -24,8 +24,8 @@
 - [x] CPF
 - [x] Nome
 - [x] Telefone
-- [ ] Salário
-- [ ] Formações
+- [x] Salário
+- [x] Formações
 - [ ] Formação em que atua
 
 
