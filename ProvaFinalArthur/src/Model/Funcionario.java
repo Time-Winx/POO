@@ -10,6 +10,7 @@ public class Funcionario {
     public double salario;
 
     public Funcionario(String nome, int idade, char sexo, int matricula, double salario) {
+
         this.nome = nome;
         this.idade = idade;
         this.sexo = sexo;
